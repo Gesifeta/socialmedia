@@ -1,0 +1,20 @@
+.app__post {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin: auto;
+    max-width: 80%;
+}
+
+.app__post-form {
+    border-radius: 10px;
+    border: 1px solid rgb(214, 203, 203);
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    width: 90%;
+}

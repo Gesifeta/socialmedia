@@ -1,29 +1,37 @@
 @import url("./global.css");
-.app{
+@import url("./register.css");
+@import url("./post.css");
+
+.app {
     display: flex;
     flex-direction: column;
     row-gap: 3rem;
+    justify-content: flex-start;
 }
-.app__header{
+
+.app__header {
     background-color: rgb(11, 140, 226);
     display: flex;
     justify-content: flex-end;
 }
-.app .main{
-    margin: auto;
+
+.app .main {
     display: flex;
+    margin: auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.app__text-container{
+
+.app__text-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: 2rem;
 }
-.main button{
+
+.main button {
     background-color: rgb(11, 140, 226);
     color: #fff;
     font-weight: bold;
