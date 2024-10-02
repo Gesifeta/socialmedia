@@ -1,0 +1,22 @@
+{
+  "name": "socialmedia",
+  "version": "1.0.0",
+  "description": "Social Media Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "social",
+    "media",
+    "free",
+    "social",
+    "media",
+    "application",
+    "best",
+    "social",
+    "media"
+  ],
+  "author": "Gemechu Adam",
+  "license": "ISC"
+}
