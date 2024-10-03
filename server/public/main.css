@@ -1,0 +1,55 @@
+@import url("global.css");
+@import url("register.css");
+@import url("post.css");
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    row-gap: 3rem;
+    justify-content: flex-start;
+}
+
+
+.app__header {
+    background-color: rgb(11, 140, 226);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.app .main {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.app__text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+}
+
+.main button {
+    background-color: rgb(11, 140, 226);
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.btn-primary {
+    color: #1b88bb;
+
+}
+
+.main .btn-secondary {
+    background-color: #ffffff;
+    color: rgb(11, 140, 226);
+    ;
+    border: .5px solid rgb(11, 140, 226);
+    font-size: 1rem;
+}
