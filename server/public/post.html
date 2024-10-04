@@ -17,13 +17,22 @@
     <div class="main">
         <div class="app__post">
             <h1>Create and Manage Posts</h1>
-            <div  class="app__post-form">
+            <div class="app__post-form">
                 <h3>Create New Posts</h3>
+                <div class="form-control">
+                    <label for="title">About</label>
+                    <input type="text" name="title" id="title">
+                </div>
                 <textarea name="post" id="post" rows="4"></textarea>
                 <button class="btn-primary" onclick="createPost()">Create Post</button>
             </div>
             <div class="app__post-list-container" id="app-post-container"></div>
-            <div class="post-pagination"></div>
+            <div class="app__post-pagination">
+                <span class="page-nav-prev btn-secondary">prev</span>
+                <div id="pagination"></div>
+                <span class="page-nav-next btn-secondary">next</span>
+
+            </div>
         </div>
     </div>
     <script src="post.js"></script>

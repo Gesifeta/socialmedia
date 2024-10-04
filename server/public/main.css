@@ -46,10 +46,15 @@
 
 }
 
-.main .btn-secondary {
+.btn-secondary {
     background-color: #ffffff;
     color: rgb(11, 140, 226);
     ;
     border: .5px solid rgb(11, 140, 226);
     font-size: 1rem;
+}
+
+.btn-secondary:active,
+.btn-primary:active {
+    transform: scale(.95);
 }
