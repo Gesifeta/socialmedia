@@ -17,7 +17,7 @@ connectToMongo();
 //const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
-const port = process.env.PORT || 3000;
+//const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
@@ -35,6 +35,9 @@ app.get('/post', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname
 app.get('/index', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html'), { username: req.user.username }));
 app.use('/api/', userRouter);
 app.use('/api/', postRouter);
+app.get('/test', (req, res) => {
+    res.send('Hello World!');
+});
 
 
 // app.listen(port, () => console.log(`Server running on port ${port}`));
