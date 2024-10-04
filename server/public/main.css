@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-self: center;
     row-gap: 3rem;
     justify-content: flex-start;
 }
@@ -15,6 +14,7 @@
 .app__header {
     background-color: rgb(11, 140, 226);
     display: flex;
+    min-width: 100vh;
     justify-content: flex-end;
 }
 

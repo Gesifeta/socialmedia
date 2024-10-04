@@ -7,7 +7,7 @@ function authenticatUser() {
     const mainContainer = document.getElementById("main-container")
     const loginButtonGroup = document.getElementById("login")
     const logoutButtonGroup = document.getElementById("logout")
-     const welcomeContainer = document.getElementById("welcome-container")
+    const welcomeContainer = document.getElementById("welcome-container")
     if (username) {
         //hide login button
         loginButtonGroup.style.display = "none"
@@ -18,13 +18,11 @@ function authenticatUser() {
         const profileWelcome = document.createElement("h1")
         profileWelcome.style.fontSize = "3rem"
         profileWelcome.textContent = `Welcome ${username}`
-       
+
         //add create post button
         const createPostButton = document.createElement("button")
         createPostButton.textContent = "Create Post"
         createPostButton.classList.add("btn-secondary")
-
-
         createPostButton.onclick = () => {
             window.location.href = "/post"
         }
@@ -33,10 +31,9 @@ function authenticatUser() {
 
 
     }
-    else {
-        logoutButtonGroup.style.display = "none"
-        loginButtonGroup.style.display = "block"
-    }
+}
+function logout() {
+    window.location.href = "/login"
 }
 window.onload = () => {
     authenticatUser()

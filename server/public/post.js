@@ -478,22 +478,26 @@ function createPostList() {
 }
 
 function showPostLists(event) {
+    let isEdit = false;
+
     let page = 1;
     //create post list contents
     const postContainer = document.getElementById("app-post-container");
     postContainer.innerHTML = ""
     const appPostList = document.createElement("div")
     appPostList.classList.add("app__post-list")
+    const editText = document.createElement("textarea")
+    editText.setAttribute("type", "text")
+    editText.setAttribute("name", "edit-text")
+    editText.setAttribute("rows", "4")
     const appPostContent = document.createElement("div")
     appPostContent.classList.add("app__post-content")
     const appPostListTaskContainer = document.createElement("div");
     appPostListTaskContainer.classList.add("task")
     const editPost = document.createElement("div")
     editPost.classList.add("edit-post")
-    editPost.textContent = "Edit"
     const deletePost = document.createElement("div")
     deletePost.classList.add("delete-post")
-    deletePost.textContent = "Delete"
     if (event) {
         page = Number(event.target.textContent)
         postContainer.innerHTML = "";
@@ -503,7 +507,6 @@ function showPostLists(event) {
     if (page > 1) {
         let filtered = posts.filter(post => (Number(post.id) > page) && Number(post.id) <= page + 3);
         filteredPosts = filtered;
-        console.log(filteredPosts)
     }
 
     postContainer.innerHTML = ""
@@ -513,18 +516,30 @@ function showPostLists(event) {
         const newPostContent = appPostContent.cloneNode(true);
         const newPostTask = appPostListTaskContainer.cloneNode(true);
         const newEditPost = editPost.cloneNode(true);
-        newEditPost.addEventListener("click",postEdit)
+        newEditPost.addEventListener("click", (e) => {
+            isEdit = !isEdit
+            e.target.textContent = isEdit ? "Save" : "Edit";
+            e.target.nextElementSibling.textContent = isEdit ? "Clear" : "Delete"
+            e.target.parentNode.previousElementSibling.style.display = isEdit ? "none" : "block"
+            e.target.parentNode.parentNode.firstElementChild.style.display = isEdit ? "block" : "none"
+
+
+        })
+        const newEditText = editText.cloneNode(true)
+        newEditText.style.display = isEdit ? "block" : "none"
+        newEditText.value = post.body;
         const newDeletePost = deletePost.cloneNode(true);
-        newDeletePost.addEventListener("click",postDelete)
+        newDeletePost.addEventListener("click", postDelete)
+
         postContainer.appendChild(newPostList)
         newPostList.appendChild(newPostContent)
+        newPostList.prepend(newEditText)
         newPostContent.textContent = post.body.slice(0, 100) + " ..."
         newPostList.appendChild(newPostTask)
         newPostTask.appendChild(newEditPost)
         newPostTask.appendChild(newDeletePost)
-        newEditPost.textContent = "Edit"
-        newDeletePost.textContent = "Delete"
-
+        newEditPost.textContent = isEdit ? "Save" : "Edit"
+        newDeletePost.textContent = isEdit ? "Clear" : "Delete"
     }
 
     const paginationContainer = document.getElementById("pagination")
@@ -540,11 +555,14 @@ function showPostLists(event) {
         navButton.textContent = i;
     }
 }
-
 window.onload = function () {
     showPostLists()
 }
+//logout
 
+function logout() {
+    window.location.href = "/login"
+}
 function createPost() {
     const postBody = document.getElementById("post").value;
     const title = document.getElementById("title").value;
@@ -563,13 +581,16 @@ function createPost() {
 }
 //delete post
 function postDelete(event) {
-let target=event.target;
-let confirm=window.confirm("Are you sure you want to delete this post?") 
-if(confirm){
-target.parentNode.parentNode.remove();
-}
-return
-    
+    let target = event.target;
+    if (target.textContent === "Clear") {
+        target.parentNode.parentNode.firstElementChild.value = ""
+        return
+    }
+    let confirm = window.confirm("Are you sure you want to delete this post?")
+    if (confirm) {
+        target.parentNode.parentNode.remove();
+    }
+    return
 }
 //edit post
 function postEdit(event) {

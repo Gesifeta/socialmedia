@@ -28,7 +28,7 @@ export const registerNewUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password, salt)
         const user = await User.create({ username, email, password: hashedPassword })
-        res.status(201).json({ user })
+        res.status(201).redirect(`/index?username=${user.username}`)
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
@@ -38,7 +38,7 @@ export const loginUser = async (req, res) => {
     if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() })
     try {
         const { username, password } = req.body
-        const user = await User.findOne({ $or: [{ email:username }, {username}] })
+        const user = await User.findOne({ $or: [{ email: username }, { username }] })
         if (!user) {
             return res.status(401).json({ error: 'You are not registered with us.' })
         }
@@ -46,10 +46,10 @@ export const loginUser = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ error: 'Invalid email or password' })
         }
-        const newUser={
-            username:user.username,
-            id:user._id,
-            email:user.email
+        const newUser = {
+            username: user.username,
+            id: user._id,
+            email: user.email
         }
         console.log(newUser);
         const authToken = generateToken(newUser)
@@ -66,7 +66,7 @@ export const userLogout = async (req, res) => {
                 return res.status(500).json({ error: 'Error logging out' })
             }
             res.clearCookie('connect.sid')
-            res.status(200).json({ message: 'Logged out successfully' })
+            res.status(200).redirect('/login')
         })
     } catch (error) {
         res.status(500).json({ error: error.message })

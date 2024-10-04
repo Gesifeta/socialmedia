@@ -17,15 +17,15 @@
     <div class="main">
         <div class="app__post">
             <h1>Create and Manage Posts</h1>
-            <div class="app__post-form">
+            <form action="/post" method="post" class="app__post-form">
                 <h3>Create New Posts</h3>
                 <div class="form-control">
                     <label for="title">About</label>
                     <input type="text" name="title" id="title">
                 </div>
-                <textarea name="post" id="post" rows="4"></textarea>
+                <textarea name="content" id="content" rows="4"></textarea>
                 <button class="btn-primary" onclick="createPost()">Create Post</button>
-            </div>
+            </form>
             <div class="app__post-list-container" id="app-post-container"></div>
             <div class="app__post-pagination">
                 <span class="page-nav-prev btn-secondary">prev</span>
@@ -36,6 +36,7 @@
         </div>
     </div>
     <script src="post.js"></script>
+    
     <noscript>
         To access this page you need to enable javascript.
     </noscript>

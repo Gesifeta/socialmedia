@@ -11,22 +11,23 @@
 </head>
 
 <body>
+    <section class="app__header">
+        <div class="btn-group" id="login">
+            <button class="btn-primary" onclick='window.location.href="/register"'>
+                Register
+
+            </button>
+            <button class="btn-primary" onclick='window.location.href="/login"'>
+                Login
+            </button>
+        </div>
+        <div class="btn-group" id="logout" onclick="logout()">
+            <button class="btn-primary">logout</button>
+        </div>
+    </section>
     <div class="app">
 
-        <section class="app__header">
-            <div class="btn-group" id="login">
-                <button class="btn-primary" onclick='window.location.href="/register"'>
-                    Register
-
-                </button>
-                <button class="btn-primary" onclick='window.location.href="/login"'>
-                    Login
-                </button>
-            </div>
-            <div class="btn-group" id="logout" onclick='logout()'>
-                <button class="btn-primary">logout</button>
-            </div>
-        </section>
+       
         <div class="main" id="main-container">
             <div class="app__text-container" id="welcome-container">
                 <h1>Welcome to the Social Media Dashboard App!</h1>
@@ -45,7 +46,7 @@
             </div>
         </div>
     </div>
-    <script type="module" src="index.js"></script>
+    <script src="index.js"></script>
     <noscript>
         To access this page you need to enable javascript.
     </noscript>
