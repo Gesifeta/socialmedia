@@ -2,7 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import session from "express-session";
 import path from "path";
-import { fileURLToPath } from "url";
+import serverless from "serverless-http";
+//import { fileURLToPath } from "url";
 import { dirname } from "path";
 import dotenv from "dotenv";
 
@@ -13,7 +14,7 @@ import { isAuthenticated } from "./middleWares/authMiddleware.js"
 dotenv.config();
 connectToMongo();
 
-const __filename = fileURLToPath(import.meta.url);
+//const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const app = express();
 const port = process.env.PORT || 3000;
@@ -32,8 +33,9 @@ app.get('/register', (req, res) => res.sendFile(path.join(__dirname, 'public', '
 app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'public', 'login.html')));
 app.get('/post', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, 'public', 'post.html')));
 app.get('/index', isAuthenticated, (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html'), { username: req.user.username }));
-app.use('/', userRouter);
-app.use('/', postRouter);
+app.use('/api/', userRouter);
+app.use('/api/', postRouter);
 
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+// app.listen(port, () => console.log(`Server running on port ${port}`));
+export const handler = serverless(app);
